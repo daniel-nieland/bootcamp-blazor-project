@@ -18,8 +18,8 @@
 
   <ItemGroup>
     <Folder Include="Components\Base\" />
-    <Folder Include="wwwroot\resources\icons\" />
-    <Folder Include="wwwroot\resources\backgrounds\" />
+    <Folder Include="wwwroot\resources\images\icons\" />
+    <Folder Include="wwwroot\resources\images\backgrounds\" />
     <Folder Include="wwwroot\scripts\" />
   </ItemGroup>
 
