@@ -1,6 +1,9 @@
-﻿:root {
+﻿:root 
+{
     --color-blue: #1434CB;
     --color-dark-blue: #021E4C;
+    --color-off-dark-blue: #082A62;
+    --color-off-red: #E24747;
     --color-yellow: #FCC015;
     --color-white: #FFFFFF;
     --color-off-white: #F0F0F0;
