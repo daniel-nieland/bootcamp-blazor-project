@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager Navigator
 
 <PageTitle>Index</PageTitle>
 
@@ -8,18 +9,38 @@
         <div class="hero-caption">
             <p class="hero-caption-header">Personalized Incentives And Experiences</p>
             <p class="hero-caption-subheader">For Your Customers</p>
-            <button class="hero-cta-button">Get Started</button>
+            <button class="hero-cta-button" @onclick=@(() => Navigator.NavigateTo("/login"))>Get Started</button>
         </div>
     </section>
     <section class="overview">
         <p class="overview-header">How It Works</p>
-        <section class="categories"> 
-            <section class="category-icons">
-                <img class="category-icon-image" src="resources/images/icons/challenge-icon-512x512.png" alt="Rubix cube" />
-                <img class="category-icon-image"src="resources/images/icons/tokens-icon-512x512.png" alt="Tokens" />
-                <img class="category-icon-image" src="resources/images/icons/leaderboard-icon-512x512.png" alt="Leaderboard" />
+        <section class="categories">
+            <section class="category-headers">
+                <article class="category">
+                    <img class="category-icon-image" src="resources/images/icons/challenge-icon-512x512.png" alt="Rubix cube"/>
+                    <p>Finish Challenges</p>
+                    <svg id="challenge-selector" class="category-selector">
+                        <polygon stroke-linejoin="round" points="30,0 10,30 50,30" stroke-width="5" stroke="var(--color-yellow)"></polygon>
+                    </svg>
+                </article>
+                <article class="category">
+                    <img class="category-icon-image" src="resources/images/icons/tokens-icon-512x512.png" alt="Tokens"/>
+                    <p>Collect Tokens</p>
+                    <svg  id="token-selector" class="category-selector">
+                        <polygon stroke-linejoin="round" points="30,0 10,30 50,30" stroke-width="5" stroke="var(--color-yellow)"></polygon>
+                    </svg>
+                </article>
+                <article class="category">
+                    <img class="category-icon-image" src="resources/images/icons/leaderboard-icon-512x512.png" alt="Leaderboard"/>
+                    <p>Rank Up</p>
+                    <svg  id="rank-selector" class="category-selector">
+                        <polygon stroke-linejoin="round" points="30,0 10,30 50,30" stroke-width="5" stroke="var(--color-yellow)"></polygon>
+                    </svg>
+                </article>
             </section>
+           
             <section class="category-content">
+           
 
             </section>
         </section>

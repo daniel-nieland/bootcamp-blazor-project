@@ -48,11 +48,10 @@
     background: var(--color-dark-blue);
 
     color: var(--color-white);
-    text-transform: uppercase;
     font-size: var(--font-medium);
     font-weight: 600;
     font-size: 25px;
-
+    text-transform: uppercase;
 }
 
 .hero-cta-button:hover
@@ -69,11 +68,11 @@
 {
     margin: var(--margin-large);
 
-    text-transform: uppercase;
-    text-align: center;
+    color: var(--color-dark-blue);
     font-weight: 600;
     font-size: 40px;
-    color: var(--color-dark-blue);
+    text-transform: uppercase;
+    text-align: center;
 
 }
 
@@ -83,16 +82,60 @@
     flex-direction: column;
 }
 
-.category-icons
+.category-headers 
 {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-content: center;
+    margin: var(--margin-large);
+
+    text-align: center;
+}
+
+.category-headers p
+{
+    width: 100%;
+
+    color: var(--color-dark-blue);
+    font-size: var(--font-medium);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.category
+{
+    position: relative;
+    width: 50%;
+
+    text-align: center;
 }
 
 .category-icon-image
 {
     width: 150px;
     height: 150px;
+    margin: 0 auto;
 }
+
+.category-selector
+{
+    position: absolute;
+    transform: translateX(-25px);
+    width: 50px;
+    height: 30px;
+
+    fill: var(--color-yellow);
+}
+
+.category-content
+{
+    z-index: 1;
+    width: 90vw;
+    height: 500px;
+    margin: 0 auto 20px auto;
+
+    background: var(--color-dark-blue);
+}
+
+
 
