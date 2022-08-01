@@ -1,2 +1,27 @@
-﻿body {
+﻿.nav-bg {
+    width: 283px;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    background: #021E4C;
+}
+
+.selected-page{
+    position: absolute;
+    width: 283px;
+    height: 47px;
+    top: 120px;
+    
+    background: #082A62;
+    border-radius: 10px;
+}
+
+.challenges-events-icon{
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    left: 42px;
+    top: 194px;
+
+    background: url(challenges-icon-heavy-white-512x512.png);
 }
