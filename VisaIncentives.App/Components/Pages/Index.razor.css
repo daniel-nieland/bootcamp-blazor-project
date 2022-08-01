@@ -64,3 +64,35 @@
 {
     background-color: var(--color-white);
 }
+
+.overview-header
+{
+    margin: var(--margin-large);
+
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    font-size: 40px;
+    color: var(--color-dark-blue);
+
+}
+
+.categories
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.category-icons
+{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.category-icon-image
+{
+    width: 150px;
+    height: 150px;
+}
+
