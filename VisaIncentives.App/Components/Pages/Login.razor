@@ -3,16 +3,34 @@
 <PageTitle>Login</PageTitle>
 
 <main class="content">
-    <div class="header-bar">
-        <img class="header-logo" src="resources/images/logos/visa-logo-white-1150x122.png" alt="Logo" />
-    </div>
     <section class="hero">
-        <section class="split left">
-            <button class="hero-cta-button">Get Started</button>
+        <section class="header-bar">
+            <img class="header-logo" src="resources/images/logos/visa-logo-white-1150x122.png" alt="Logo" />
         </section>
-        <section class="split right">
-            <h3>Engage Your Customers</h3>
+        <section class="split-section">
+            <section class="split-left">
+                <section class="left-side-items">
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+
+                    <label for="pass"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="pass" required>
+                    <label class="remember-me">
+                      <input type="checkbox" name="remember"> Remember Me
+                    </label>
+                    <span class="forgot-pass"><a href="/login">Forgot Password</a></span>
+                    <button type="submit" class="sign-in-button lsi">Sign In</button>
+                    <span class="create-acct lsi">Don't have an account? <a href="/login">Sign up for free</a></span>
+                </section>
+            </section>
+            <section class="split-right">
+                <section class="text-section">
+                    <h3>Engage Your Customers</h3>
+                    <p>More ways to earn and redeem points</p>
+                </section>
+            </section>
         </section>
+        
     </section>
 </main>
 
