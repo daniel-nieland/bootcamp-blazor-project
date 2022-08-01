@@ -1,27 +1,134 @@
-﻿/* Split the screen in half */
-.split {
-    height: 100%;
+﻿* {
+    font-family: var(--font-family);
+}
+
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+
+.hero {
+    font-family: var(--font-family);
+}
+
+/* Split the screen in half */
+.split-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    height: 100vh;
+}
+
+.split-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50%;
-    position: fixed;
-    top: 0;
-    overflow-x: hidden;
-    margin-top: 100px;
+    height: 100vh;
+    background-color: white;
 }
 
-/* Control the left side */
-.left {
-    left: 0;
+.left-side-items {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    width: 75%;
+}
+
+.left-side-items > * {
+    width: 100%;
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+    color: var(--color-dark-blue);
+}
+
+.left-side-items input[type="text"],
+.left-side-items input[type="password"] {
+    border-radius: .35rem;
+    border: 1px solid var(--color-light-gray);
+    padding: .5rem;
+    margin-bottom: 2rem;
+}
+
+.left-side-items b {
+    font-size: var(--font-medium);
+}
+
+.left-side-items input[type="checkbox"] {
+    appearance: none;
     background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.1em solid var(--color-light-gray);
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
 }
 
-/* Control the right side */
-.right {
-    right: 0;
+.left-side-items input[type="checkbox"]:checked {
+    appearance: none;
+    background-color: var(--color-blue);
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+}
+
+.remember-me {
+    flex-basis: 50%;
+    width: 50%;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.forgot-pass {
+    flex-basis: 50%;
+    width: 50%;
+    color: var(--color-orange);
+    text-align: right;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.sign-in-button {
+    border: none;
+    background-color: var(--color-dark-blue);
+    color: azure;
+    font-family: var(--font-family);
+    border-radius: .35rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    width: 100%;
+    padding: .8rem;
+}
+
+.create-acct {
+    text-align: center;
+}
+
+.create-acct a {
+    color: var(--color-orange);
+    font-weight: bold;
+}
+
+.split-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.40) url('resources/images/backgrounds/login-cta-3504x2142.jpg');
     background-blend-mode: darken;
-    background-size: cover;
-    height: 100vh;
-    color: aliceblue;
+    background-size: 100vh;
+    color: white;
 }
 
 .header-bar {
@@ -34,4 +141,18 @@
     margin-top: calc(var(--margin-large) - 5px);
     width: 749px;
     height: 79px;
+}
+
+.text-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.text-section p {
+    font-size: 2rem;
+    padding: 1rem;
 }
