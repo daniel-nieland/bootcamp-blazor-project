@@ -1,27 +1,49 @@
-﻿.nav-bg {
+﻿.navbar
+{
+    display: flex;
+    flex-direction: column;
+
     width: 283px;
     height: 100vh;
     left: 0px;
     top: 0px;
-    background: #021E4C;
+    background: var(--color-dark-blue);
 }
 
-.selected-page{
-    position: absolute;
-    width: 283px;
-    height: 47px;
-    top: 120px;
-    
-    background: #082A62;
+.logo 
+{
+    margin-top: var(--margin-small);
+    margin-bottom: var(--margin-large);
+    width: 250px;
+    height: 40px;
+}
+
+.logo:hover
+{
+    cursor: pointer;
+}
+
+.nav-link
+{
+    display: flex;
+    margin: var(--margin-small);
+}
+
+.nav-link:hover 
+{
+    cursor: pointer;
+    background: var(--color-off-dark-blue);
     border-radius: 10px;
 }
 
-.challenges-events-icon{
-    position: absolute;
-    width: 52px;
-    height: 52px;
-    left: 42px;
-    top: 194px;
+.nav-icon
+{
+    width: 50px;
+    height: 50px;
+}
 
-    background: url(challenges-icon-heavy-white-512x512.png);
+.nav-text
+{
+    margin: var(--margin-large);
+    font-size: var(--font-small);
 }

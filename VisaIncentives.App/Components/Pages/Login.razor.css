@@ -1,17 +1,10 @@
-﻿* {
-    font-family: var(--font-family);
-}
-
-a {
-    color: inherit; /* blue colors for links too */
-    text-decoration: inherit; /* no underline */
-}
-
-.hero {
-    font-family: var(--font-family);
+﻿.header-logo:hover
+{
+    cursor: pointer;
 }
 
 /* Split the screen in half */
+
 .split-section {
     display: flex;
     justify-content: center;
@@ -23,6 +16,7 @@ a {
 
 .split-left {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 50%;
@@ -82,16 +76,41 @@ a {
     transform: translateY(-0.075em);
 }
 
+/* Password Controls */
+
+.password-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-checkbox-container:hover {
+    cursor: pointer;
+}
+
+.remember-checkbox-container img {
+    display: none;
+    background: black;
+
+    width: 16px;
+    height: 16px;
+}
+
+.remember-checkbox {
+    
+}
+
+
 .remember-me {
-    flex-basis: 50%;
-    width: 50%;
+    /*flex-basis: 50%;*/
+
     font-weight: 600;
     font-size: 1rem;
 }
 
+
+
 .forgot-pass {
-    flex-basis: 50%;
-    width: 50%;
+    /*flex-basis: 50%;*/
     color: var(--color-dark-blue);
     text-align: right;
     font-weight: bold;
@@ -108,6 +127,10 @@ a {
     font-weight: 500;
     width: 100%;
     padding: .8rem;
+}
+
+.sign-in-button:hover {
+    background: var(--color-off-dark-blue);
 }
 
 .create-acct {
@@ -129,6 +152,7 @@ a {
     background-blend-mode: darken;
     background-size: 100vh;
     color: white;
+    filter: brightness(0.9);
 }
 
 .header-bar {
@@ -160,3 +184,5 @@ a {
 .TestingButton {
     background-color: var(--color-orange);
 }
+
+

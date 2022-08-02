@@ -1,12 +1,26 @@
 ﻿@page "/dashboard"
+@inject NavigationManager Navigator
 
 <PageTitle>Dashboard</PageTitle>
 
-<div class="nav-bg">
-    <div class="selected-page">
-        <h2>Challenges & Events</h2>
-    </div>
-</div>
+<nav class="navbar">
+    <img class="logo" src="resources/images/logos/visa-logo-white-1150x122.png" alt="Logo" @onclick=@(() => Navigator.NavigateTo("/"))/>
+    
+    <section class="nav-link" role="button" aria-label="Navigate to Reports">
+        <img class="nav-icon" src="resources/images/icons/reports-icon-white.png"/>
+        <p class="nav-text">Reports</p>
+    </section>
+
+    <section class="nav-link" role="button" aria-label="Navigate to Challenges">
+        <img class="nav-icon" src="resources/images/icons/challenges-icon-heavy-white-512x512.png"/>
+        <p class="nav-text">Challenges</p>
+    </section>
+
+    <section class="nav-link" role="button" aria-label="Navigate to Vendors">
+        <img class="nav-icon" src="resources/images/icons/vendors-icon-white-512x512.png"/>
+        <p class="nav-text">Vendors</p>
+    </section>
+</nav>
 
 @code {
 
