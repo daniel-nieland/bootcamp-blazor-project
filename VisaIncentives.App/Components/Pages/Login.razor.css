@@ -92,7 +92,7 @@ a {
 .forgot-pass {
     flex-basis: 50%;
     width: 50%;
-    color: var(--color-orange);
+    color: var(--color-dark-blue);
     text-align: right;
     font-weight: bold;
     font-size: 1rem;
@@ -115,7 +115,7 @@ a {
 }
 
 .create-acct a {
-    color: var(--color-orange);
+    color: var(--color-dark-blue);
     font-weight: bold;
 }
 
@@ -155,4 +155,8 @@ a {
 .text-section p {
     font-size: 2rem;
     padding: 1rem;
+}
+
+.TestingButton {
+    background-color: var(--color-orange);
 }
