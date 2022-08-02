@@ -1,48 +1,144 @@
 ﻿@page "/"
 @inject NavigationManager Navigator
+@inject IElementHandler ElementHandler
 
 <PageTitle>Index</PageTitle>
 
 <main class="content">
     <section class="hero">
-        <img class="hero-logo" src="resources/images/logos/visa-logo-white-1150x122.png" alt="Logo" />
+        <img class="hero-logo" src="resources/images/logos/visa-logo-white-1150x122.png" alt="Logo" @onclick=@(() => Navigator.NavigateTo("/"))/>
         <div class="hero-caption">
             <p class="hero-caption-header">Personalized Incentives And Experiences</p>
-            <p class="hero-caption-subheader">For Your Customers</p>
+            <p class="hero-caption-subheader">For Your Cardholders</p>
             <button class="hero-cta-button" @onclick=@(() => Navigator.NavigateTo("/login"))>Get Started</button>
         </div>
     </section>
+
     <section class="overview">
-        <p class="overview-header">How It Works</p>
+        <h2 class="overview-header">How It Works</h2>
         <section class="categories">
             <section class="category-headers">
-                <article class="category">
+                <article class="category" 
+                         @onclick=@(() => ToggleCategory("challenge")) 
+                         role="button"
+                         aria-label="Show Challenges"
+                         tabindex="0"
+                >
                     <img class="category-icon-image" src="resources/images/icons/challenge-icon-512x512.png" alt="Rubix cube"/>
                     <p>Finish Challenges</p>
-                    <svg id="challenge-selector" class="category-selector">
+                    <svg @ref=@_challengeSelector id="challenge-selector" class="category-selector">
                         <polygon stroke-linejoin="round" points="30,0 10,30 50,30" stroke-width="5" stroke="var(--color-yellow)"></polygon>
                     </svg>
                 </article>
-                <article class="category">
+
+                <article class="category" 
+                         @onclick=@(() => ToggleCategory("token")) 
+                         role="button" 
+                         aria-label="Show Tokens"
+                         tabindex="0"
+                >
                     <img class="category-icon-image" src="resources/images/icons/tokens-icon-512x512.png" alt="Tokens"/>
                     <p>Collect Tokens</p>
-                    <svg  id="token-selector" class="category-selector">
+                    <svg @ref=@_tokenSelector  id="token-selector" class="category-selector">
                         <polygon stroke-linejoin="round" points="30,0 10,30 50,30" stroke-width="5" stroke="var(--color-yellow)"></polygon>
                     </svg>
                 </article>
-                <article class="category">
+
+                <article class="category" 
+                         @onclick=@(() => ToggleCategory("rank")) 
+                         role="button" 
+                         aria-label="Show Rank"
+                         tabindex="0"
+                >
                     <img class="category-icon-image" src="resources/images/icons/leaderboard-icon-512x512.png" alt="Leaderboard"/>
                     <p>Rank Up</p>
-                    <svg  id="rank-selector" class="category-selector">
+                    <svg @ref=@_rankSelector  id="rank-selector" class="category-selector">
                         <polygon stroke-linejoin="round" points="30,0 10,30 50,30" stroke-width="5" stroke="var(--color-yellow)"></polygon>
                     </svg>
                 </article>
             </section>
            
             <section class="category-content">
-           
-
+                <article @ref=_challengeContent id="challenges-content">
+                    <h3 class="content-header">Enable unique tasks that your cardholders can complete</h3>
+                    <hr class="content-header-divider" />
+                    
+                    <p>Challenges are tailored to your cardholders based on their transaction history and preferences.</p>
+                    <p>Participating vendors can also offer challenges.</p>
+                    <p>There are two categories of challenges: dailies and monthlies.</p>
+                    <ul>
+                        <li>Dailies cover common tasks that cycle every week</li>
+                        <li>Monthlies cover event related tasks for customers and groups</li>
+                    </ul>
+                </article>
+                <article @ref=_tokensContent id="tokens-content">
+                    <h3 class="content-header">Collect tokens to redeem customized rewards</h3>
+                    <hr class="content-header-divider" />
+                    
+                    <p>Completing challenges awards challenge tokens that can be used to redeem various customized rewards.</p>
+                    <p>Event tokens are awarded after completing events and can be used to redeem non-monetary rewards.</p>
+                    <p>Collect tokens to unlock more valuable rewards!</p>
+                </article>
+                <article @ref=_rankContent id="rank-content">
+                    <h3 class="content-header">Rank up in the leaderboards and compete with others</h3>
+                    <hr class="content-header-divider" />
+                    
+                    <p>Leaderboards show the top groups for on-going and past events.</p>
+                    <p>Cardholders can compete in teams of 1 - 5 in one of the monthly challenges to earn more tokens.</p>
+                    <p>Competition encourages participation.</p>
+                </article>
             </section>
         </section>
     </section>
 </main>
+
+@code
+{
+    ElementReference _challengeSelector;
+    ElementReference _tokenSelector;
+    ElementReference _rankSelector;
+
+    ElementReference _challengeContent;
+    ElementReference _tokensContent;
+    ElementReference _rankContent;
+
+    /// <summary>
+    /// Toggles the given category
+    /// </summary>
+    /// <param name="categoryName">The category to be toggled</param>
+    /// <remarks>Toggles the visibility of the category's content and selector.</remarks>
+    public async Task ToggleCategory(string categoryName)
+    {
+        switch (categoryName)
+        {
+            case "token":
+                await ElementHandler.SetStyleAsync(_challengeSelector, "display", "none");
+                await ElementHandler.SetStyleAsync(_rankSelector, "display", "none");
+                await ElementHandler.SetStyleAsync(_tokenSelector, "display", "inline");
+
+                await ElementHandler.SetStyleAsync(_challengeContent, "display", "none");
+                await ElementHandler.SetStyleAsync(_rankContent, "display", "none");
+                await ElementHandler.SetStyleAsync(_tokensContent, "display", "block");
+                break;
+            case "rank":
+                await ElementHandler.SetStyleAsync(_challengeSelector, "display", "none");
+                await ElementHandler.SetStyleAsync(_tokenSelector, "display", "none");
+                await ElementHandler.SetStyleAsync(_rankSelector, "display", "inline");
+
+                await ElementHandler.SetStyleAsync(_challengeContent, "display", "none");
+                await ElementHandler.SetStyleAsync(_tokensContent, "display", "none");
+                await ElementHandler.SetStyleAsync(_rankContent, "display", "block");
+                break;
+            default:
+                await ElementHandler.SetStyleAsync(_tokenSelector, "display", "none");
+                await ElementHandler.SetStyleAsync(_rankSelector, "display", "none");
+                await ElementHandler.SetStyleAsync(_challengeSelector, "display", "inline");
+
+                await ElementHandler.SetStyleAsync(_tokensContent, "display", "none");
+                await ElementHandler.SetStyleAsync(_rankContent, "display", "none");
+                await ElementHandler.SetStyleAsync(_challengeContent, "display", "block");
+                break;
+        }
+
+    }
+}
