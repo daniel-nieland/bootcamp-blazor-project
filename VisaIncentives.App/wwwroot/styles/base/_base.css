@@ -5,6 +5,18 @@
     color: var(--color-white);
 }
 
+a
+{
+    color: var(--color-dark-blue);
+    text-decoration: none;
+}
+
+    a:hover 
+    {
+        border-bottom: solid 2px var(--color-yellow);
+        border-radius: 5px;
+    }
+
 button:hover
 {
     cursor: pointer;
