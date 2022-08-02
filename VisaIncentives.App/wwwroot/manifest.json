@@ -1,6 +1,6 @@
 {
-  "name": "VisaIncentives.App",
-  "short_name": "VisaIncentives.App",
+  "name": "Visa Incentives",
+  "short_name": "Visa Incentives",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
