@@ -42,7 +42,7 @@
                         <a class="forgot-pass" href="/login">Forgot Password</a>
                     </section>
  
-                    <button @onclick="ExecuteLogin" type="submit" class="sign-in-button lsi @CssClassSIB">Sign In</button>
+                    <button @onclick=@(() => ValidateLogin()) type="submit" class="sign-in-button lsi @CssClassSIB">Sign In</button>
                     <span class="create-acct lsi">Don't have an account? <a href="/login">Sign up for free</a></span>
                 </section>
             </section>
@@ -86,5 +86,8 @@
     public async Task ValidateLogin()
     {
         // use await ElementHandler.GetPropertyAsync<string>(put ref here, "value")
+
+        // After validation, reroute
+        Navigator.NavigateTo("/dashboard");
     }
 }
