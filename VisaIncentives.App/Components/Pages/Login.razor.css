@@ -10,7 +10,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    flex-grow: 1;
     height: 100vh;
 }
 
@@ -50,69 +49,45 @@
     font-size: var(--font-medium);
 }
 
-.left-side-items input[type="checkbox"] {
-    appearance: none;
-    background-color: #fff;
-    margin: 0;
-    font: inherit;
-    color: currentColor;
-    width: 1.15em;
-    height: 1.15em;
-    border: 0.1em solid var(--color-light-gray);
-    border-radius: 0.15em;
-    transform: translateY(-0.075em);
-}
-
-.left-side-items input[type="checkbox"]:checked {
-    appearance: none;
-    background-color: var(--color-blue);
-    margin: 0;
-    font: inherit;
-    color: currentColor;
-    width: 1.15em;
-    height: 1.15em;
-    border: 0.15em solid currentColor;
-    border-radius: 0.15em;
-    transform: translateY(-0.075em);
-}
-
 /* Password Controls */
 
 .password-controls {
     display: flex;
     justify-content: space-between;
+    height: 20px;
 }
 
-.remember-checkbox-container:hover {
-    cursor: pointer;
+    .remember-checkbox-container label:hover {
+        cursor: pointer;
+    }
+
+#remember-checkbox 
+{
+    appearance: none;
+
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 2px;
+    margin: 0;
+
+    transform: translateY(-0.075em);
 }
 
-.remember-checkbox-container img {
-    display: none;
-    background: black;
-
-    width: 16px;
-    height: 16px;
-}
-
-.remember-checkbox {
-    
-}
-
+    #remember-checkbox:checked
+    {
+        background: var(--color-dark-blue) url("resources/images/icons/checkmark-icon-512x512.png");
+        background-size: 85%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
 .remember-me {
-    /*flex-basis: 50%;*/
-
     font-weight: 600;
     font-size: 1rem;
 }
 
-
-
 .forgot-pass {
-    /*flex-basis: 50%;*/
-    color: var(--color-dark-blue);
-    text-align: right;
     font-weight: bold;
     font-size: 1rem;
 }
@@ -129,9 +104,9 @@
     padding: .8rem;
 }
 
-.sign-in-button:hover {
-    background: var(--color-off-dark-blue);
-}
+    .sign-in-button:hover {
+        background: var(--color-off-dark-blue);
+    }
 
 .create-acct {
     text-align: center;
