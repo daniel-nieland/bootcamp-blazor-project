@@ -19,7 +19,7 @@
                       <input type="checkbox" name="remember"> Remember Me
                     </label>
                     <span class="forgot-pass"><a href="/login">Forgot Password</a></span>
-                    <button type="submit" class="sign-in-button lsi">Sign In</button>
+                    <button @onclick="ExecuteLogin" type="submit" class="sign-in-button lsi @CssClassSIB">Sign In</button>
                     <span class="create-acct lsi">Don't have an account? <a href="/login">Sign up for free</a></span>
                 </section>
             </section>
@@ -35,5 +35,22 @@
 </main>
 
 @code {
+    private string CssClassSIB { get; set; } = null;
+    private bool SwapBlueOrange { get; set; } = true;
 
+    private async Task ExecuteLogin()
+    {
+        await Task.Delay(2000);
+
+        if (SwapBlueOrange)
+        {
+            CssClassSIB = "TestingButton";
+            SwapBlueOrange = false;
+        } else
+        {
+            CssClassSIB = null;
+            SwapBlueOrange = true;
+        }
+
+    }
 }
