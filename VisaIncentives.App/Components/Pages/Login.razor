@@ -1,32 +1,55 @@
 ﻿@page "/login"
+@inject NavigationManager Navigator
+@inject IElementHandler ElementHandler
 
 <PageTitle>Login</PageTitle>
 
 <main class="content">
     <section class="hero">
         <section class="header-bar">
-            <img class="header-logo" src="resources/images/logos/visa-logo-white-1150x122.png" alt="Logo" />
+            <img class="header-logo" src="resources/images/logos/visa-logo-white-1150x122.png" alt="Logo" @onclick=@(() => Navigator.NavigateTo("/"))/>
         </section>
         <section class="split-section">
             <section class="split-left">
                 <section class="left-side-items">
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
+                    <input @ref=_emailInputRef
+                           id="email"
+                           type="text" 
+                           placeholder="Enter Email"
+                           name="email" 
+                           required
+                    >
 
                     <label for="pass"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="pass" required>
-                    <label class="remember-me">
-                      <input type="checkbox" name="remember"> Remember Me
-                    </label>
-                    <span class="forgot-pass"><a href="/login">Forgot Password</a></span>
+                    <input @ref=_passwordInputRef
+                           id="pass" 
+                           type="password" 
+                           placeholder="Enter Password" 
+                           name="pass" 
+                           required
+                    >
+                    
+                    @* Password controls for remember me and forgot *@
+                    @* To-Do: Overlay checkmark behind checkbox *@
+                    <section class="password-controls">
+                        <div class="remember-checkbox-container">
+                            <input id="remember-checkbox" type="checkbox" name="remember">
+                            <label class="remember-me">Remember Me</label>
+                            <img src="resources/images/icons/checkmark-icon-512x512.png" alt="checkmark"/>
+                        </div>
+                    
+                        <a class="forgot-pass" href="/login">Forgot Password</a>
+                    </section>
+ 
                     <button @onclick="ExecuteLogin" type="submit" class="sign-in-button lsi @CssClassSIB">Sign In</button>
                     <span class="create-acct lsi">Don't have an account? <a href="/login">Sign up for free</a></span>
                 </section>
             </section>
             <section class="split-right">
                 <section class="text-section">
-                    <h3>Engage Your Customers</h3>
-                    <p>More ways to earn and redeem points</p>
+                    <h3>Engage Your Cardholders</h3>
+                    <p>With more ways to earn and redeem points</p>
                 </section>
             </section>
         </section>
@@ -35,8 +58,11 @@
 </main>
 
 @code {
-    private string CssClassSIB { get; set; } = null;
-    private bool SwapBlueOrange { get; set; } = true;
+    ElementReference _emailInputRef;
+    ElementReference _passwordInputRef;
+
+    string CssClassSIB { get; set; } = null;
+    bool SwapBlueOrange { get; set; } = true;
 
     private async Task ExecuteLogin()
     {
@@ -51,6 +77,14 @@
             CssClassSIB = null;
             SwapBlueOrange = true;
         }
+    }
 
+    /// <summary>
+    /// Validates the user's credentials
+    /// </summary>
+    /// <remarks>Currently hardcoded to dev@bofa.com and password123</remarks
+    public async Task ValidateLogin()
+    {
+        // use await ElementHandler.GetPropertyAsync<string>(put ref here, "value")
     }
 }
