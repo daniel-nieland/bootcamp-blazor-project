@@ -14,24 +14,29 @@
                 <section class="left-side-items">
                     <label for="email"><b>Email</b></label>
                     <input @ref=_emailInputRef
-                           class="@CssClassInvalidLogin"
+                           class="login-control"
                            id="email"
                            type="text" 
                            placeholder="Enter Email"
                            name="email" 
                            required
+                           @oninput=@(() => ClearErrorIndicators(_emailInputRef, _emailErrorRef))
+                           @onsubmit=@(() => ValidateLogin())
                     >
+                    <p @ref=_emailErrorRef class="error-alert">Please enter a valid email</p>
 
                     <label for="pass"><b>Password</b></label>
                     <input @ref=_passwordInputRef
-                           class="@CssClassInvalidLogin"
+                           class="login-control"
                            id="pass" 
                            type="password" 
                            placeholder="Enter Password" 
                            name="pass" 
                            required
+                           @oninput=@(() => ClearErrorIndicators(_passwordInputRef, _passwordErrorRef))
                     >
-                    
+                    <p @ref=_passwordErrorRef class="error-alert">Please enter a valid password</p>
+
                     <section class="password-controls">
                         <div class="remember-checkbox-container">
                             <input id="remember-checkbox" type="checkbox" name="remember">
@@ -41,7 +46,7 @@
                         <a class="forgot-pass" href="/login">Forgot Password</a>
                     </section>
  
-                    <button @onclick=@(() => ValidateLogin()) type="submit" class="sign-in-button lsi @SwapBlueOrange">Sign In</button>
+                    <button @onclick=@(() => ValidateLogin()) type="submit" class="sign-in-button lsi">Sign In</button>
                     <span class="create-acct lsi">Don't have an account? <a href="/login">Sign up for free</a></span>
                 </section>
             </section>
@@ -59,35 +64,62 @@
 @code {
     ElementReference _emailInputRef;
     ElementReference _passwordInputRef;
+    ElementReference _emailErrorRef;
+    ElementReference _passwordErrorRef;
 
-    string CssClassInvalidLogin { get; set; } = null;
-    string SwapBlueOrange { get; set; } = "Blue";
+
+    /// <summary>
+    /// Clears the error indicators from the given elements
+    /// </summary>
+    /// <param name="inputRef">The input element</param>
+    /// <param name="alertRef">The alert element</param>
+    public async Task ClearErrorIndicators(ElementReference inputRef, ElementReference alertRef)
+    {
+        await ElementHandler.RemoveClassAsync(inputRef, "error-outline");
+        await ElementHandler.SetStyleAsync(alertRef,"visibility", "hidden");
+    }
 
     /// <summary>
     /// Validates the user's credentials
     /// </summary>
-    /// <remarks>Currently hardcoded to dev@bofa.com and password123</remarks>
+    /// <remarks>
+    /// Currently hardcoded to dev@bofa.com and password123
+    ///
+    /// Error styles are shown when specific inputs are invalid
+    /// </remarks>
     public async Task ValidateLogin()
     {
-        // use await ElementHandler.GetPropertyAsync<string>(put ref here, "value")
+        string hardEmail = "dev@bofa.com";
+        string hardPass = "password123";
         string loginEmail = await ElementHandler.GetPropertyAsync<string>(_emailInputRef, "value");
         string loginPass = await ElementHandler.GetPropertyAsync<string>(_passwordInputRef, "value");
 
-        // Hardcoded login credentials
-        string hardEmail = "dev@bofa.com";
-        string hardPass = "password123";
+        bool isValidEmail = loginEmail.Equals(hardEmail);
+        bool isValidPassword = loginPass.Equals(hardPass);
+        bool areValidCredentials = isValidEmail && isValidPassword;
 
-        // Perform validation
-        if (loginEmail.ToLower().Equals(hardEmail) && loginPass.Equals(hardPass))
+        if (areValidCredentials)
         {
-            // Valid, reroute to dashboard page
-            CssClassInvalidLogin = null;
+            await ElementHandler.SetStyleAsync(_emailErrorRef, "visibility", "hidden");
+            await ElementHandler.SetStyleAsync(_passwordErrorRef, "visibility", "hidden");
+            await ElementHandler.RemoveClassAsync(_emailInputRef, "error-outline");
+            await ElementHandler.RemoveClassAsync(_passwordInputRef, "error-outline");
+            
             Navigator.NavigateTo("/dashboard");
-        } else
+        } 
+        else
         {
-            // Invalid, stay and show red outlines
-            CssClassInvalidLogin = "InvalidLogin";
-            SwapBlueOrange = "Orange";
+            if (!isValidEmail)
+            {
+                await ElementHandler.SetStyleAsync(_emailErrorRef, "visibility", "visible");
+                await ElementHandler.AddClassAsync(_emailInputRef, "error-outline");
+            }
+
+            if (!isValidPassword)
+            {
+                await ElementHandler.SetStyleAsync(_passwordErrorRef, "visibility", "visible");
+                await ElementHandler.AddClassAsync(_passwordInputRef, "error-outline");
+            }
         }
     }
 }

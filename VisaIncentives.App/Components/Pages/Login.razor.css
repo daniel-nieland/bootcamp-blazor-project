@@ -37,19 +37,23 @@
     color: var(--color-dark-blue);
 }
 
-.left-side-items input[type="text"],
-.left-side-items input[type="password"] {
+.login-control {
     border-radius: .35rem;
-    border: 1px solid var(--color-light-gray);
+    border: 2px solid var(--color-light-gray);
     padding: .5rem;
-    margin-bottom: 2rem;
     outline: none;
 }
 
-.left-side-items input[type="text"]:focus,
-.left-side-items input[type="password"]:focus {
+.login-control:focus {
     border: 2px solid var(--color-blue);
     outline: none;
+}
+
+.error-alert
+{
+    color: var(--color-off-red);
+    font-weight: 600;
+    visibility: hidden;
 }
 
 .left-side-items b {
@@ -61,6 +65,7 @@
 .password-controls {
     display: flex;
     justify-content: space-between;
+    margin-top: var(--margin-small);
     height: 20px;
 }
 
@@ -163,16 +168,7 @@
     padding: 1rem;
 }
 
-.InvalidLogin {
-    outline: 2px solid var(--color-off-red);
+.error-outline {
+    border: 2px solid var(--color-off-red) !important;
 }
-
-.Blue {
-    background-color: var(--color-dark-blue);
-}
-
-.Orange {
-    background-color: var(--color-orange);
-}
-
 
