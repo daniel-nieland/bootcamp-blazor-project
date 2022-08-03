@@ -43,6 +43,13 @@
     border: 1px solid var(--color-light-gray);
     padding: .5rem;
     margin-bottom: 2rem;
+    outline: none;
+}
+
+.left-side-items input[type="text"]:focus,
+.left-side-items input[type="password"]:focus {
+    border: 2px solid var(--color-blue);
+    outline: none;
 }
 
 .left-side-items b {
@@ -156,7 +163,15 @@
     padding: 1rem;
 }
 
-.TestingButton {
+.InvalidLogin {
+    outline: 2px solid var(--color-off-red);
+}
+
+.Blue {
+    background-color: var(--color-dark-blue);
+}
+
+.Orange {
     background-color: var(--color-orange);
 }
 
