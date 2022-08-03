@@ -14,6 +14,7 @@
                 <section class="left-side-items">
                     <label for="email"><b>Email</b></label>
                     <input @ref=_emailInputRef
+                           class="@CssClassInvalidLogin"
                            id="email"
                            type="text" 
                            placeholder="Enter Email"
@@ -23,6 +24,7 @@
 
                     <label for="pass"><b>Password</b></label>
                     <input @ref=_passwordInputRef
+                           class="@CssClassInvalidLogin"
                            id="pass" 
                            type="password" 
                            placeholder="Enter Password" 
@@ -39,7 +41,7 @@
                         <a class="forgot-pass" href="/login">Forgot Password</a>
                     </section>
  
-                    <button @onclick=@(() => ValidateLogin()) type="submit" class="sign-in-button lsi @CssClassSIB">Sign In</button>
+                    <button @onclick=@(() => ValidateLogin()) type="submit" class="sign-in-button lsi @SwapBlueOrange">Sign In</button>
                     <span class="create-acct lsi">Don't have an account? <a href="/login">Sign up for free</a></span>
                 </section>
             </section>
@@ -58,33 +60,34 @@
     ElementReference _emailInputRef;
     ElementReference _passwordInputRef;
 
-    string CssClassSIB { get; set; } = null;
-    bool SwapBlueOrange { get; set; } = true;
-
-    private async Task ExecuteLogin()
-    {
-        await Task.Delay(2000);
-
-        if (SwapBlueOrange)
-        {
-            CssClassSIB = "TestingButton";
-            SwapBlueOrange = false;
-        } else
-        {
-            CssClassSIB = null;
-            SwapBlueOrange = true;
-        }
-    }
+    string CssClassInvalidLogin { get; set; } = null;
+    string SwapBlueOrange { get; set; } = "Blue";
 
     /// <summary>
     /// Validates the user's credentials
     /// </summary>
-    /// <remarks>Currently hardcoded to dev@bofa.com and password123</remarks
+    /// <remarks>Currently hardcoded to dev@bofa.com and password123</remarks>
     public async Task ValidateLogin()
     {
         // use await ElementHandler.GetPropertyAsync<string>(put ref here, "value")
+        string loginEmail = await ElementHandler.GetPropertyAsync<string>(_emailInputRef, "value");
+        string loginPass = await ElementHandler.GetPropertyAsync<string>(_passwordInputRef, "value");
 
-        // After validation, reroute
-        Navigator.NavigateTo("/dashboard");
+        // Hardcoded login credentials
+        string hardEmail = "dev@bofa.com";
+        string hardPass = "password123";
+
+        // Perform validation
+        if (loginEmail.ToLower().Equals(hardEmail) && loginPass.Equals(hardPass))
+        {
+            // Valid, reroute to dashboard page
+            CssClassInvalidLogin = null;
+            Navigator.NavigateTo("/dashboard");
+        } else
+        {
+            // Invalid, stay and show red outlines
+            CssClassInvalidLogin = "InvalidLogin";
+            SwapBlueOrange = "Orange";
+        }
     }
 }
