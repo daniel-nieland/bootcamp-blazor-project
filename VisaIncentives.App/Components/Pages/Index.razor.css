@@ -1,9 +1,4 @@
-﻿/* Large desktop devices (2500px and up) */
-#challenges-content { padding-left: 2%; padding-right: 66% }
-#tokens-content { padding-left: 33%; padding-right: 33% }
-#rank-content { padding-left: 66%; padding-right: 2% }
-
-
+﻿
 /* Hero section */ 
 .hero 
 {
@@ -207,10 +202,9 @@
 {
     border: 1px solid var(--color-yellow);
     border-radius: 5px;
-    width: 100;
+    width: 40%;
     height: 3px;
-    margin-left: 0%;
-    margin-right: 2;
+    margin-left: 0;
     margin-bottom: var(--margin-large);
 
     background: var(--color-yellow);
@@ -227,3 +221,33 @@
     margin-bottom: var(--margin-small);
 }
 
+/* Large desktop devices (2500px and up) */
+@media screen and (min-width: 2500px)
+{
+    #challenges-content 
+    {
+        padding-left: 2%;
+        padding-right: 66%
+    }
+
+    #tokens-content 
+    {
+        padding-left: 33%;
+        padding-right: 33%
+    }
+
+    #rank-content 
+    {
+        padding-left: 66%;
+        padding-right: 2%
+    }
+
+    .content-header-divider
+    {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 2%;
+    }
+
+
+}
